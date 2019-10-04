@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 import Form from './components/Form';
 import YourNotes from './components/Notes';
 import Note from './components/Note';
@@ -31,7 +31,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:7700/api/notes')
+      .get('http://localhost:5000/api/notes')
       .then(response => {
         this.setState({ notes: response.data })
       })
@@ -51,7 +51,7 @@ class App extends Component {
   addNote = (event, newNote) => {
     event.preventDefault();
     axios
-      .post("http://localhost:7700/api/notes/post", newNote)
+      .post("http://localhost:5000/api/notes/post", newNote)
       .then(response => {
         newNote.id = response.data.success;
         this.setState({ notes: [newNote, ...this.state.notes] })
@@ -62,7 +62,7 @@ class App extends Component {
   editNote = (event, id, state) => {
     event.preventDefault();
     axios
-    .put(`http://localhost:7700/api/notes/edit/${id}`, state)
+    .put(`http://localhost:5000/api/notes/edit/${id}`, state)
     .then(response => {
       const updateArray = this.state.notes.map(note => {
         if (id === response.data.id) {
@@ -136,7 +136,7 @@ class App extends Component {
               />
             } />
 
-          <Route
+          {/* <Route
             path='/login/'
             render={props =>
               <Login {...props}
@@ -150,7 +150,7 @@ class App extends Component {
               <Register {...props}
               />
             }
-            />      
+            />       */}
 
         </div>
       </div>

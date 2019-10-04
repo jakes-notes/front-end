@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter as  NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 import React from 'react';
 import Modal from 'react-modal';
@@ -18,7 +18,7 @@ class Note extends React.Component {
 
   fetchNote = id => {
     axios
-      .get(`http://localhost:7700/api/notes/${id}`)
+      .get(`http://localhost:5000/api/notes/${id}`)
       .then(response => this.setState({ note: response.data }))
       .catch(response => console.log(response));
   }
@@ -32,7 +32,7 @@ class Note extends React.Component {
     const id = this.props.match.params.id
     console.log(id)
     axios
-      .delete(`http://localhost:7700/api/notes/delete/${id}`)
+      .delete(`http://localhost:5000/api/notes/delete/${id}`)
       .then(response => {
         this.setState({ notes: response.data });
 
@@ -50,7 +50,7 @@ class Note extends React.Component {
 
   render() {
 
-    const { title, body, id } = this.state.note
+    // const { title, body, id } = this.state.note
 
 
 

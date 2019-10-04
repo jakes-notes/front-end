@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './Notes.css';
-import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter as Link } from 'react-router-dom';
 
 
 
@@ -20,7 +20,7 @@ class YourNotes extends React.Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:7700/api/notes')
+      .get('http://localhost:5000/api/notes')
       .then(res => {
         this.setState({ notes: res.data })
       })
